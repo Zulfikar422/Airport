@@ -38,8 +38,8 @@ io.on('connection', function(socket) {
 
     apiaiReq.on('response', (response) => {
       let aiText = response.result.fulfillment.speech;
-      console.log('Pilot reply: ' + aiText);
-      socket.emit('pilot reply', aiText);
+      console.log('Bot reply: ' + aiText);
+      socket.emit('bot reply', aiText);
     });
 
     apiaiReq.on('error', (error) => {
