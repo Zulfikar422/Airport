@@ -3,7 +3,7 @@
 const socket = io();
 
 const outputYou = document.querySelector('.output-you');
-const outputPilot = document.querySelector('.output-pilot');
+const outputBot = document.querySelector('.output-bot');
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
@@ -37,7 +37,7 @@ recognition.addEventListener('speechend', () => {
 });
 
 recognition.addEventListener('error', (e) => {
-  outputPilot.textContent = 'Error: ' + e.error;
+  outputBot.textContent = 'Error: ' + e.error;
 });
 
 function synthVoice(text) {
@@ -47,9 +47,9 @@ function synthVoice(text) {
   synth.speak(utterance);
 }
 
-socket.on('pilot reply', function(replyText) {
+socket.on('bot reply', function(replyText) {
   synthVoice(replyText);
 
   if(replyText == '') replyText = '(No answer...)';
-  outputPilot.textContent = replyText;
+  outputBot.textContent = replyText;
 });
